@@ -1,26 +1,44 @@
 
 public class Park {
-    String placa;
-    Tempo horaEntrada;
-    Tempo horaSaida;
-    double valor;
+    private String placa;
+    private Tempo horaEntrada;
+    private Tempo horaSaida;
+    private double valor;
+    //private static int quant = 0;
+    private static int vagas = 3;
 
     public Park(String p) {
         horaEntrada = new Tempo();
         placa = p;
+        vagas--;
+    }
+
+    public void entrada(String p) {
+        horaEntrada = new Tempo();
+        placa = p;
+        vagas--;
     }
 
     public void saida(int hr, int min) {
         horaSaida = new Tempo(hr, min);
+        vagas++;
         calcularValor();
     }
 
-    public void calcularValor() {
+    private void calcularValor() {
         valor = (double) horaSaida.subtrair(horaEntrada) / 15;
         valor = valor * 3;
     }
 
     public String toString() {
-        return "O carro com a placa " + placa + " que entrou as " + horaEntrada.toString() + " e saiu as " + horaSaida.toString() + " deverá pagar R$" + Double.toString(valor);
+        return "Veículo: " + placa + "\nEntrada: " + horaEntrada.toString() + " || Saída: " + horaSaida.toString() + "\nValor: R$" + Double.toString(valor);
+    }
+
+    public static int getVagas() {
+        return vagas;
+    }
+    
+    public String getPlaca() {
+        return placa;
     }
 }
