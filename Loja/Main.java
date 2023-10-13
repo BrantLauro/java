@@ -1,3 +1,5 @@
+package loja;
+
 import calendario.*;
 import venda.*;
 import javax.swing.JOptionPane;
