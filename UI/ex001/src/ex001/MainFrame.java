@@ -4,6 +4,9 @@
  */
 package ex001;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author brant
@@ -65,13 +68,19 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActionPerformed
-        int num = (int) (Math.random() * 6);
-        System.out.println(num);
-        int num2 = (int) jNum.getValue();
-        if(num == num2){
-            jLabelTxt.setText("You Win!");
-        } else {
-            jLabelTxt.setText("<html>No, the number<br>was: " + num);
+        try {
+            int num = (int) (Math.random() * 6);
+            int num2 = (int) jNum.getValue();
+            Thread.sleep(200);
+            if(num == num2){
+                jLabelTxt.setText("You Win!");
+            } else if(num2 > 5 || num2 < 0) {
+                jLabelTxt.setText("<html>No, a number<br>from 0 to 5!!!");
+            }else {
+                jLabelTxt.setText("<html>No, the number<br>was: " + num);
+            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonActionPerformed
 
